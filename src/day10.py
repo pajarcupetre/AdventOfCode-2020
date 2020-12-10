@@ -17,7 +17,8 @@ def multiply_1diff_3diff(numbers_list):
         current_voltage = numbers[index]
         index += 1
     count3 += 1
-    return count1*count3
+    return count1 * count3
+
 
 def count_posibilities(numbers_list):
     numbers = sorted(numbers_list)
@@ -26,14 +27,14 @@ def count_posibilities(numbers_list):
     while index < len(numbers):
         if numbers[index] <= 3:
             posibilities[index] = 1
-        if index - 1 >= 0  and numbers[index] - numbers[index-1] <=3:
-            posibilities[index] += posibilities[index-1]
+        if index - 1 >= 0 and numbers[index] - numbers[index - 1] <= 3:
+            posibilities[index] += posibilities[index - 1]
         if index - 2 >= 0 and numbers[index] - numbers[index - 2] <= 3:
             posibilities[index] += posibilities[index - 2]
         if index - 3 >= 0 and numbers[index] - numbers[index - 3] <= 3:
             posibilities[index] += posibilities[index - 3]
         index += 1
-    return posibilities[len(numbers)-1]
+    return posibilities[len(numbers) - 1]
 
 
 if __name__ == '__main__':
