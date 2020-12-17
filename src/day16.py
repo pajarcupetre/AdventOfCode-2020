@@ -32,6 +32,7 @@ def sum_invalid_tickets_fields(inputs):
         index += 1
     return sum
 
+
 def multiple_departure_on_my_ticket(inputs):
     intervals = dict()
     index = 0
@@ -92,7 +93,8 @@ def multiple_departure_on_my_ticket(inputs):
             if good_field:
                 for rule_field in rule_field_pos_local:
                     if rule_field in rule_field_pos_per_ticket:
-                        rule_field_pos_per_ticket[rule_field] = rule_field_pos_per_ticket[rule_field].union(rule_field_pos_local[rule_field])
+                        rule_field_pos_per_ticket[rule_field] = rule_field_pos_per_ticket[rule_field].union(
+                            rule_field_pos_local[rule_field])
                     else:
                         rule_field_pos_per_ticket[rule_field] = rule_field_pos_local[rule_field]
             else:
@@ -101,7 +103,8 @@ def multiple_departure_on_my_ticket(inputs):
         if good_ticket:
             for rule_field in intervals:
                 if rule_field in rule_field_pos_per_ticket and rule_field in rule_field_pos:
-                    rule_field_pos[rule_field] = rule_field_pos_per_ticket[rule_field].intersection(rule_field_pos[rule_field])
+                    rule_field_pos[rule_field] = rule_field_pos_per_ticket[rule_field].intersection(
+                        rule_field_pos[rule_field])
                 else:
                     rule_field_pos[rule_field] = set()
         index += 1
@@ -113,14 +116,14 @@ def multiple_departure_on_my_ticket(inputs):
         rule_field_pos_list = rule_field_pos_list[1:]
         for index in range(len(rule_field_pos_list)):
             rule_field_pos_list[index][1].remove(list(rule_field_selected[1])[0])
-        rule_field_column_number[rule_field_selected[0]] = (list (rule_field_selected[1]))[0]
-
+        rule_field_column_number[rule_field_selected[0]] = (list(rule_field_selected[1]))[0]
 
     for rule in rule_field_column_number:
         if rule.startswith('departure'):
-            field = int (my_ticket[rule_field_column_number[rule]])
+            field = int(my_ticket[rule_field_column_number[rule]])
             product *= field
     return product
+
 
 if __name__ == '__main__':
     filename = sys.argv[1]
@@ -131,4 +134,4 @@ if __name__ == '__main__':
         input_strings.append(line.strip())
 
     print(sum_invalid_tickets_fields(input_strings))
-    print("final_product:" , multiple_departure_on_my_ticket(input_strings))
+    print("final_product:", multiple_departure_on_my_ticket(input_strings))
